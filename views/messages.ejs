@@ -1,0 +1,54 @@
+<%- include('header'); -%>
+
+    <body style="background-color: #f8f9fa;">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark fixed-top">
+                <div class="container">
+                    <a class="navbar-brand px-5" href="/index.html">
+                        <img src="image/logo.png" alt="Bootstrap" width="30" height="30">
+                    </a>
+        
+                    <div class="ms-auto d-flex">
+                        <form class="d-flex ms-3" role="search" action="/search" method="post">
+                            <input class="form-control me-2" type="search" placeholder="Search name" aria-label="Search" name="searchBar">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>        
+        
+        <div class="pt-5">
+            <div class="container mt-5 mb-5 col-md-6 offset-md-3">
+                <h1>
+                    <%= title %>
+                </h1>
+                <span class="text-danger"> <%= notfound %> </span>
+                <% responses.forEach(response=> { %>
+                    <div class="card mb-3" style="background-color: aliceblue;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/image/userimg.jpeg" class="img-fluid rounded-circle p-2" alt="image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">
+                                        <%= response.name %>
+                                    </h5>
+                                    <span>
+                                        <%= response.email %>
+                                    </span>
+                                    <p class="card-text flex-grow-1">
+                                        <%= response.message %>
+                                    </p>
+                                    <button type="button" class="btn btn-success align-self-end"
+                                        onclick="location.href='mailto:<%= response.email %>?subject=Response to Your Message on my website'">Get
+                                        Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}); %>
+            </div>
+        </div>
+        <%- include('footer'); -%>
